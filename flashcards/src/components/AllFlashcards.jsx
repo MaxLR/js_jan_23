@@ -19,8 +19,8 @@ const AllFlashcards = (props) => {
                         <h3>{card.category}</h3>
                         <button onClick={(e) => handleDelete(e, idx)}>Delete</button>
 
-                        <p className="front">{card.front}</p>
-                        <p className="back">{card.back}</p>
+                        <p className="front">{card.question}</p>
+                        <p className="back">{card.correct_answer}</p>
 
                         {/* 2nd way of conditional rendering */}
                         {/* {card.flipped ? 

@@ -5,7 +5,7 @@ import NewFlashcard from './components/NewFlashcard';
 import AllFlashcards from './components/AllFlashcards';
 
 const App = () => {
-    const [flashcards, setFlashcards] = useState(flashcardsData)
+    const [flashcards, setFlashcards] = useState([])
 
     const handleFlip = (event, selectedCardIdx) => {
         console.log("Flipped")
@@ -20,6 +20,20 @@ const App = () => {
         })
 
         setFlashcards(updatedCards);
+    }
+
+    const getFlashcards = (event) => {
+        fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=boolean")
+            .then(res => {
+                console.log(res)
+                res.json()
+                    .then(res => {
+                        console.log(res.results);
+                        setFlashcards(res.results);
+                    })
+            }).catch(err => {
+                console.log(err.json())
+            })
     }
 
     const handleDelete = (event, idxToDelete) => {
@@ -44,6 +58,8 @@ const App = () => {
                 <h1>Programming Flash Cards</h1>
                 <hr />
             </header>
+
+            <button onClick={getFlashcards}>Get Flashcards</button>
 
             <NewFlashcard addCard={addCardToList}/>
 
