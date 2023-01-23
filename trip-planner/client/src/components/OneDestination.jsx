@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const OneDestination = (props) => {
     const { id } = useParams();
     const [destination, setDestination] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/destinations/${id}`)
@@ -15,6 +17,15 @@ export const OneDestination = (props) => {
                 console.log(err)
             })
     }, [id])
+
+    const handleDelete = () => {
+        axios.delete(`http://localhost:8000/api/destinations/${id}`)
+            .then(res => {
+                navigate('/destinations');
+            }).catch(err => {
+                console.log(err);
+            })
+    }
 
     if (destination === null) {
         return null;
@@ -37,6 +48,12 @@ export const OneDestination = (props) => {
                 {fall && <li className="list-group-item">Fall</li>}
             </ul>
             <p>{src}</p>
+            <button
+                onClick={handleDelete}
+                className="btn btn-sm btn-outline-danger mx-1"
+            >
+                Delete
+            </button>
         </div>
     );
 };

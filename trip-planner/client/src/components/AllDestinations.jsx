@@ -16,6 +16,19 @@ export const AllDestinations = (props) => {
             })
     }, [])
 
+    const handleDelete = (idToBeDeleted) => {
+        axios.delete(`http://localhost:8000/api/destinations/${idToBeDeleted}`)
+            .then(res => {
+                const filteredDestinations = destinations.filter((destination) => {
+                    return destination._id !== idToBeDeleted;
+                })
+
+                setDestinations(filteredDestinations);
+            }).catch(err => {
+                console.log(err);
+            })
+    }
+
     return (
         <div>
             <h2>Travel Destinations</h2>
@@ -36,6 +49,14 @@ export const AllDestinations = (props) => {
                             {fall && <li className="list-group-item">Fall</li>}
                         </ul>
                         <Link to={`/destinations/${_id}`}>View Details about: {location}</Link>
+                        <button
+                            onClick={event => {
+                                handleDelete(_id)
+                            }}
+                            className="btn btn-sm btn-outline-danger mx-1"
+                        >
+                            Delete
+                        </button>
                     </div> 
                 );
             })}
