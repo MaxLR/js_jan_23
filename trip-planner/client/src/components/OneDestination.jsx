@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const OneDestination = (props) => {
@@ -48,6 +48,8 @@ export const OneDestination = (props) => {
                 {fall && <li className="list-group-item">Fall</li>}
             </ul>
             <p>{src}</p>
+            <Link to={`/destinations/${id}/edit`}>Edit {location}</Link>
+
             <button
                 onClick={handleDelete}
                 className="btn btn-sm btn-outline-danger mx-1"

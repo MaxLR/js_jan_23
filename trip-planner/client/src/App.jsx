@@ -35,7 +35,9 @@ function App() {
         <Route path='/' element={<Navigate to='/destinations' replace />} />
         <Route path='/destinations' element={<AllDestinations />}/>
         <Route path='/destinations/:id' element={<OneDestination />}/>
+        <Route path='/destinations/:id/edit' element={<EditDestination />}/>
         <Route path='/destinations/new' element={<NewDestination />}/>
+        <Route path='*' element={<NotFound />}/>
       </Routes>
     </div>
   );
