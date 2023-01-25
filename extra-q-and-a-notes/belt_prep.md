@@ -11,3 +11,11 @@
     * Full CRUD + Validation messages
 1. What kind of error messaging do I need?
     * Error messages coming back from your server should be displayed
+1. What should I prepare before the exam???
+    * Create a folder called mern-exam (or something)
+    * Create a react app so you don't need to wait 5+ mins during the exam
+    * Create server folder + nested folder skeleton
+    * Can also create files in each folder + rename them when you know the class you're working with
+    * Run all of my install commands (server & client)
+    * Make sure we've allowed for routing (add BrowserRouter)
+    * Boilerplate CRU components
